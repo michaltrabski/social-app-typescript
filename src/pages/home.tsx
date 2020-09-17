@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import ButtonAppBar from "../components/Navbar";
 
 export class Home extends Component {
   render() {
-    return <div>Home page</div>;
+    return <div>home</div>;
   }
 }
 
