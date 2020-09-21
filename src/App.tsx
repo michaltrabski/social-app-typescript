@@ -34,7 +34,9 @@ function App() {
 
           <div className="container">
             <Switch>
-              <Route exact path="/" component={Home}></Route>
+              <Route exact path="/">
+                <Home />
+              </Route>
               <Route path="/login" component={Login}></Route>
               <Route path="/signup" component={Signup}></Route>
             </Switch>
