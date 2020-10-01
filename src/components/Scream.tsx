@@ -11,6 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import ScreamInterface from "../interfaces/Scream.interface";
 import { Link } from "react-router-dom";
 
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -28,7 +31,9 @@ const Scream: React.FC<ScreamInterface> = ({
   userHandle,
 }) => {
   const classes = useStyles();
-  console.log(classes);
+
+  dayjs.extend(relativeTime);
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -47,7 +52,9 @@ const Scream: React.FC<ScreamInterface> = ({
             {userHandle}
           </Typography>
           <Typography variant="body2" color="textSecondary">
-            {createdAt}
+            {dayjs().format("YYYY-MM-DD HH:mm")}{" "}
+            <strong>({dayjs(createdAt).fromNow()})</strong>
+            {/* {dayjs().format("YYYY-MM-DDTHH:mm:ss SSS [Z] A")} */}
           </Typography>
           <Typography variant="body1" color="textSecondary" component="p">
             {body}
