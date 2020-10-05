@@ -17,13 +17,13 @@ export class Home extends Component<Props, State> {
 
   componentDidMount() {
     axios.get("/screams").then((res) => {
-      console.log("res.data", res.data);
+      // console.log("res.data", res.data);
       this.setState({ screams: res.data });
     });
   }
   render() {
     const { screams } = this.state;
-    console.log(screams);
+    // console.log(screams);
     // let recentScreamsMarkup = screams ? (
     //   screams.map((scream) => <p>{scream.screamId}</p>)
     // ) : (
