@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.error.main,
       fontSize: "0.8rem",
     },
+    spinner: {
+      color: "white",
+    },
   })
 );
 
@@ -130,8 +133,14 @@ const Login = (props: Props) => {
               className={classes.button}
               fullWidth
             >
-              Login
-              {loading && <CircularProgress color="secondary" />}
+              {loading ? (
+                <CircularProgress
+                  className={classes.spinner}
+                  color="secondary"
+                />
+              ) : (
+                "Login"
+              )}
             </Button>
             <Typography variant="body2">Don't have an account?</Typography>
           </form>
