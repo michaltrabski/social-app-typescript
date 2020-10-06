@@ -7,6 +7,7 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import jwtDecode from "jwt-decode";
 
 const theme = createMuiTheme({
   palette: {
@@ -24,6 +25,12 @@ const theme = createMuiTheme({
     },
   },
 });
+
+const token = localStorage.FBIdToken;
+if (token) {
+  const decodedToken = jwtDecode(token);
+  console.log("decodedToken", decodedToken);
+}
 
 function App() {
   return (

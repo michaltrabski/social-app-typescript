@@ -16,19 +16,16 @@ export class Home extends Component<Props, State> {
   };
 
   componentDidMount() {
-    axios.get("/screams").then((res) => {
-      // console.log("res.data", res.data);
-      this.setState({ screams: res.data });
-    });
+    axios
+      .get("/screams")
+      .then((res) => {
+        console.log("res.data", res.data);
+        this.setState({ screams: res.data });
+      })
+      .catch((err) => console.log(err));
   }
   render() {
     const { screams } = this.state;
-    // console.log(screams);
-    // let recentScreamsMarkup = screams ? (
-    //   screams.map((scream) => <p>{scream.screamId}</p>)
-    // ) : (
-    //   <p>Loading...</p>
-    // );
 
     return (
       <Grid container spacing={10}>
@@ -40,15 +37,17 @@ export class Home extends Component<Props, State> {
           {/* {recentScreamsMarkup} */}
         </Grid>
         <Grid item sm={4} xs={12}>
-          {screams &&
-            screams.map((scream) => (
-              <Scream
-                screamId={scream.screamId}
-                body={scream.body}
-                createdAt={scream.createdAt}
-                userHandle={scream.userHandle}
-              />
-            ))}
+          {console.log("xxx", screams)}
+          {screams
+            ? screams.map((scream) => (
+                <Scream
+                  screamId={scream.screamId}
+                  body={scream.body}
+                  createdAt={scream.createdAt}
+                  userHandle={scream.userHandle}
+                />
+              ))
+            : "no scream"}
         </Grid>
       </Grid>
     );

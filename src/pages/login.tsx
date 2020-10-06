@@ -16,6 +16,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useHistory } from "react-router";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -65,13 +66,14 @@ const Login = (props: Props) => {
       .post("/login", credentials)
       .then((res) => {
         // console.log("Login success! = ", res.data);
+        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         history.push("/");
       })
       .catch((err) => {
         console.log(err.response.data);
         setErrors({ ...initialErrors, ...err.response.data });
-      })
-      .finally(() => setLoading(false));
+        setLoading(false);
+      });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -142,7 +144,9 @@ const Login = (props: Props) => {
                 "Login"
               )}
             </Button>
-            <Typography variant="body2">Don't have an account?</Typography>
+            <Typography variant="body2">
+              Don't have an account? <Link to="/signup">Signup here</Link>.
+            </Typography>
           </form>
         </Grid>
         <Grid xs={12} md={4} item></Grid>

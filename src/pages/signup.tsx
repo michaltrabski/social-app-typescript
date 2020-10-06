@@ -16,6 +16,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useHistory } from "react-router";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -176,7 +177,9 @@ const Signup = (props: Props) => {
                 "Signup"
               )}
             </Button>
-            <Typography variant="body2">Allready have an account?</Typography>
+            <Typography variant="body2">
+              Allready have an account? <Link to="/login">Login here</Link>.
+            </Typography>
           </form>
         </Grid>
         <Grid xs={12} md={4} item></Grid>
