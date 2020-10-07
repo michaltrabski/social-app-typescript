@@ -8,19 +8,21 @@ import { screamSchema } from "../schema/screamSchema";
 interface Props {}
 
 interface State {
-  screams: ScreamInterface[] | null;
+  screams: ScreamInterface[];
 }
 export class Home extends Component<Props, State> {
   state: State = {
-    screams: null,
+    screams: [],
   };
 
   componentDidMount() {
+    //https://europe-west3-social-app-typescript.cloudfunctions.net/api/screams
     axios
-      .get("/screams")
+      .get("/api/screams") 
       .then((res) => {
+        console.log("res", res);
         console.log("res.data", res.data);
-        this.setState({ screams: res.data });
+        if (res.data) this.setState({ screams: res.data });
       })
       .catch((err) => console.log(err));
   }
@@ -37,8 +39,8 @@ export class Home extends Component<Props, State> {
           {/* {recentScreamsMarkup} */}
         </Grid>
         <Grid item sm={4} xs={12}>
-          {console.log("xxx", screams)}
-          {screams
+          {console.log("xxx",screams.length, screams)}
+          {screams.length > 0 
             ? screams.map((scream) => (
                 <Scream
                   screamId={scream.screamId}

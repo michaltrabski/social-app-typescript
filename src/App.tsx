@@ -26,10 +26,17 @@ const theme = createMuiTheme({
   },
 });
 
+// let authenticated: boolean;
+// console.log(authenticated)
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
   console.log("decodedToken", decodedToken);
+  // console.log("exp", decodedToken?.exp);
+
+} else {
+  console.log("no token")
 }
 
 function App() {
