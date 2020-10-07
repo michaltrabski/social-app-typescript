@@ -44,6 +44,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy1": "http://localhost:5000/social-app-typescript/europe-west3/api",
-  "proxy": "https://europe-west3-social-app-typescript.cloudfunctions.net"
+  "proxyXX": "http://localhost:5000/social-app-typescript/europe-west3/api",
+  "proxyXXX": "https://europe-west3-social-app-typescript.cloudfunctions.net"
 }
