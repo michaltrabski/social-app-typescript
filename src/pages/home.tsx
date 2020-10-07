@@ -18,7 +18,7 @@ export class Home extends Component<Props, State> {
   componentDidMount() {
     //https://europe-west3-social-app-typescript.cloudfunctions.net/api/screams
     axios
-      .get("https://europe-west3-social-app-typescript.cloudfunctions.net/api/screams") 
+      .get("/screams") 
       .then((res) => {
         console.log("res", res);
         console.log("res.data", res.data);

@@ -45,5 +45,5 @@
     ]
   },
   "proxyXX": "http://localhost:5000/social-app-typescript/europe-west3/api",
-  "proxyXXX": "https://europe-west3-social-app-typescript.cloudfunctions.net"
+  "proxy": "https://europe-west3-social-app-typescript.cloudfunctions.net/api"
 }
