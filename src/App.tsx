@@ -8,6 +8,8 @@ import Signup from "./pages/signup";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import jwtDecode from "jwt-decode";
+import { decode } from "punycode";
+import { FirebaseIdToken } from "./const/const";
 
 const theme = createMuiTheme({
   palette: {
@@ -26,17 +28,25 @@ const theme = createMuiTheme({
   },
 });
 
-// let authenticated: boolean;
-// console.log(authenticated)
+let authenticated: boolean;
 
-const token = localStorage.FBIdToken;
+interface MyToken {
+  name: string;
+  exp: number;
+}
+const token = localStorage[FirebaseIdToken];
 if (token) {
-  const decodedToken = jwtDecode(token);
-  console.log("decodedToken", decodedToken);
-  // console.log("exp", decodedToken?.exp);
-
+  const decodedToken = jwtDecode<MyToken>(token);
+  if (decodedToken.exp * 1000 < Date.now()) {
+    window.location.href = "/login";
+    localStorage.removeItem(FirebaseIdToken);
+    authenticated = false;
+  } else {
+    authenticated = true;
+  }
+  console.log("authenticated = ", authenticated);
 } else {
-  console.log("no token")
+  console.log("authenticated = ", "no token");
 }
 
 function App() {
@@ -51,6 +61,8 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
+
+              {/* protected rout component in 6:02:00 of tutorial  */}
               <Route path="/login" component={Login}></Route>
               <Route path="/signup" component={Signup}></Route>
             </Switch>

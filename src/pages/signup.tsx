@@ -17,6 +17,7 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Link } from "react-router-dom";
+import { ApiUrl, FirebaseIdToken } from "../const/const";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -70,9 +71,9 @@ const Signup = (props: Props) => {
     e.preventDefault();
     setLoading(true);
     axios
-      .post("/signup", credentials)
+      .post(`${ApiUrl}/signup`, credentials)
       .then((res) => {
-        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
+        localStorage[FirebaseIdToken] = `Bearer ${res.data.token}`;
         history.push("/");
       })
       .catch((err) => {

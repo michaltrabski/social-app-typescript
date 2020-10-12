@@ -4,6 +4,7 @@ import axios from "axios";
 import Scream from "../components/Scream";
 import ScreamInterface from "../interfaces/Scream.interface";
 import { screamSchema } from "../schema/screamSchema";
+import { ApiUrl } from "../const/const";
 
 interface Props {}
 
@@ -16,12 +17,11 @@ export class Home extends Component<Props, State> {
   };
 
   componentDidMount() {
-    //https://europe-west3-social-app-typescript.cloudfunctions.net/api/screams
     axios
-      .get("https://europe-west3-social-app-typescript.cloudfunctions.net/api/screams") 
+      .get(`${ApiUrl}/screams`)
       .then((res) => {
-        console.log("res", res);
-        console.log("res.data", res.data);
+        // console.log("res", res);
+        // console.log("res.data", res.data);
         if (res.data) this.setState({ screams: res.data });
       })
       .catch((err) => console.log(err));
@@ -39,8 +39,8 @@ export class Home extends Component<Props, State> {
           {/* {recentScreamsMarkup} */}
         </Grid>
         <Grid item sm={4} xs={12}>
-          {console.log("xxx",screams.length, screams)}
-          {screams.length > 0 
+          {console.log("xxx", screams.length, screams)}
+          {screams.length > 0
             ? screams.map((scream) => (
                 <Scream
                   screamId={scream.screamId}
